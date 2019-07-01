@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>修改密码</h1>
+
+    <form>
+        用户名:<input name="username" id="username" type="hidden"></br>
+        新密码:<input name="password" id="password"></br>
+        再次输入密码:<input name="password2" id="password2"></br>
+        <input type="button" onclick="repassword()">修改密码</input>
+    </form>
+<!--
+    <script src="../static/jquery/jquery-2.1.1.min.js" type="text/javascript" th:src="@{/jquery/jquery-2.1.1.min.js}"></script>
+-->
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" th:inline="javascript">
+
+        function repassword(){
+            $.ajax({
+                type: "POST",
+                url: "repassword/updatepw",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data:JSON.stringify(
+                    {
+                        "username":$("#username").val(),
+                        "password":$("#password").val()
+                    }
+                ),
+            });
+        }
+    </script>
+</body>
+</html>
